@@ -1,0 +1,6 @@
+{
+  "name": "YouTube Ad-Link Web App",
+  "description": "A YouTube-like web application designed for Telegram Web App, where users can watch ads to unlock premium links. Features encrypted storage, Telegram integration, and a secure admin panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

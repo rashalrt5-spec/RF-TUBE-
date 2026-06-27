@@ -1,0 +1,103 @@
+{
+  "entities": {
+    "Video": {
+      "title": "Video",
+      "description": "A video with an encrypted target link that users can unlock.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the video"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the video"
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "description": "The image thumbnail for the video"
+        },
+        "videoUrl": {
+          "type": "string",
+          "description": "The watch URL of the video (e.g., YouTube embed or dummy video)"
+        },
+        "encryptedTargetLink": {
+          "type": "string",
+          "description": "The target link encrypted using AES"
+        },
+        "requiredAdsCount": {
+          "type": "integer",
+          "description": "Number of ads required to unlock this link (default 3)"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Number of views on this video"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["title", "thumbnailUrl", "encryptedTargetLink", "requiredAdsCount"]
+    },
+    "UnlockProgress": {
+      "title": "Unlock Progress",
+      "description": "Tracks a user's progress in watching ads to unlock a specific video's link.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Telegram user ID or simulated user ID"
+        },
+        "videoId": {
+          "type": "string",
+          "description": "The ID of the video being unlocked"
+        },
+        "adsWatched": {
+          "type": "integer",
+          "description": "Number of ads watched so far for this video"
+        },
+        "unlocked": {
+          "type": "boolean",
+          "description": "Whether the link is unlocked"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["userId", "videoId", "adsWatched", "unlocked"]
+    },
+    "AdminSettings": {
+      "title": "Admin Settings",
+      "description": "Global application settings managed by the administrator.",
+      "type": "object",
+      "properties": {
+        "globalAdCode": {
+          "type": "string",
+          "description": "Global ad injection script or key"
+        },
+        "encryptionSalt": {
+          "type": "string",
+          "description": "Salt used to encrypt target links on database"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "videos/{videoId}": {
+      "schema": "Video",
+      "description": "Collection of YouTube-like videos with target links"
+    },
+    "unlocks/{unlockId}": {
+      "schema": "UnlockProgress",
+      "description": "Collection tracking user ad-watching progress per video"
+    },
+    "settings/global": {
+      "schema": "AdminSettings",
+      "description": "Global application configurations"
+    }
+  }
+}
