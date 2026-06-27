@@ -285,7 +285,7 @@ export default function AdminPanel({ onClose, videos, onRefreshVideos }: AdminPa
                 <Key className="w-4 h-4 text-zinc-600 mr-2.5" />
                 <input
                   type="password"
-                  placeholder="Password (Rashal117)"
+                  placeholder="Enter Admin Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="bg-transparent text-sm text-zinc-100 outline-none w-full"
